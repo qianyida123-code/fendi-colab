@@ -1,0 +1,159 @@
+/* ==========================================================================
+   01 · THE EDITORIAL COVER (首页)
+   ========================================================================== */
+
+.cover {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 26px;
+  overflow: hidden;
+}
+
+/* —— Masthead —— */
+.cover__masthead {
+  flex: 0 0 auto;
+  padding-top: calc(env(safe-area-inset-top) + 26px);
+  text-align: center;
+}
+.cover__brand {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: .42em;
+  text-indent: .42em;
+  color: var(--black);
+  line-height: 1;
+}
+.cover__rule {
+  width: 34px; height: 1px;
+  background: var(--gold);
+  margin: 12px auto 11px;
+  opacity: .8;
+}
+.cover__sub {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  letter-spacing: .38em;
+  text-indent: .38em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+.cover__edition {
+  margin-top: 14px;
+  font-size: 8px;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+}
+
+/* —— Hero image —— */
+.cover__stage {
+  flex: 1 1 auto;
+  position: relative;
+  margin: 6px -26px 0;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cover__stage::before {
+  content: "";
+  position: absolute;
+  inset: 8% 6% 10%;
+  background: radial-gradient(ellipse at 50% 42%, rgba(255,255,255,.9) 0%, rgba(249,246,240,0) 68%);
+  pointer-events: none;
+}
+.cover__hero {
+  width: 104%;
+  max-height: 100%;
+  object-fit: contain;
+  /* multiply 让抠图背景与画布完全融合，消除任何边界 */
+  filter: drop-shadow(0 22px 30px rgba(17,17,17,.09));
+  animation: heroReveal 1.5s var(--ease) both .15s;
+}
+@keyframes heroReveal {
+  from { opacity: 0; transform: translateY(16px) scale(.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Caption beside the image, like a magazine plate number */
+.cover__plate {
+  position: absolute;
+  left: 26px;
+  bottom: 4px;
+  writing-mode: vertical-rl;
+  font-size: 7.5px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+}
+.cover__plate b { font-weight: 400; color: var(--grey); }
+
+/* —— Issue caption —— */
+.cover__caption {
+  flex: 0 0 auto;
+  text-align: center;
+  padding: 4px 0 16px;
+}
+.cover__caption h2 {
+  font-family: var(--serif);
+  font-size: 15px;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: .04em;
+  color: var(--ink);
+  margin: 0 0 7px;
+}
+.cover__caption p {
+  margin: 0 auto;
+  max-width: 27ch;
+  font-size: 10.5px;
+  line-height: 1.85;
+  color: var(--grey);
+  letter-spacing: .03em;
+}
+
+/* —— Bottom action row —— */
+.cover__actions {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(17,17,17,.16);
+  border-bottom: 1px solid rgba(17,17,17,.16);
+  margin-bottom: calc(env(safe-area-inset-bottom) + 18px);
+}
+.cover__actions .btn-hair {
+  border: 0;
+  border-right: 1px solid rgba(17,17,17,.16);
+  padding: 16px 4px 15px;
+  font-size: 8.5px;
+  letter-spacing: .18em;
+}
+.cover__actions .btn-hair:last-child { border-right: 0; }
+.cover__actions .btn-hair::after { bottom: -1px; }
+.cover__actions .btn-hair.is-active::after { background: var(--gold); }
+
+/* —— WeChat tab bar —— */
+.tabbar {
+  flex: 0 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: rgba(249,246,240,.94);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(17,17,17,.12);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.tabbar__item {
+  padding: 10px 4px 9px;
+  text-align: center;
+  font-size: 8px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+  transition: color .4s var(--ease);
+}
+.tabbar__item svg { display: block; width: 17px; height: 17px; margin: 0 auto 6px; stroke: currentColor; stroke-width: 1; fill: none; }
+.tabbar__item.is-active { color: var(--black); }
+.tabbar__item.is-active svg { stroke-width: 1.3; }

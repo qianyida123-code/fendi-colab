@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<title>FENDI — Croissant Co-Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/cover.css">
+<link rel="stylesheet" href="css/atelier.css">
+<link rel="stylesheet" href="css/gallery.css">
+<link rel="stylesheet" href="css/review.css">
+</head>
+<body>
+
+<div class="device" id="device">
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SCREEN 1 · THE EDITORIAL COVER
+       ════════════════════════════════════════════════════════════ -->
+  <section class="screen is-active" id="screen-cover" aria-label="Home">
+    <div class="cover">
+      <header class="cover__masthead">
+        <div class="cover__brand">FENDI</div>
+        <div class="cover__rule"></div>
+        <div class="cover__sub">Croissant Co-Lab</div>
+        <div class="cover__edition">Volume I — The Atelier Edition</div>
+      </header>
+
+      <div class="cover__stage">
+        <img class="cover__hero" src="assets/bag-hero.png" alt="Croissant handbag, editorial photography">
+        <div class="cover__plate">Plate <b>No. 01</b> · Fendi Roma</div>
+      </div>
+
+      <div class="cover__caption">
+        <h2>Croissant</h2>
+        <p>A half-moon fold in supple leather, finished by hand. Every piece is decided together with the atelier — and no two are alike.</p>
+      </div>
+
+      <nav class="cover__actions">
+        <button class="btn-hair" data-nav="atelier" data-mode="compete">Design &amp; Compete</button>
+        <button class="btn-hair" data-nav="atelier" data-mode="customize">Customize</button>
+        <button class="btn-hair" data-nav="gallery">Vote Gallery</button>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SCREEN 2 · THE ATELIER BOARD
+       ════════════════════════════════════════════════════════════ -->
+  <section class="screen" id="screen-atelier" aria-label="Atelier">
+    <div class="atelier">
+      <div class="navbar">
+        <button class="navbar__back" data-nav="cover" aria-label="Back">
+          <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <div class="navbar__title">Atelier</div>
+        <div class="navbar__capsule" aria-hidden="true"><span></span><i></i><span></span></div>
+      </div>
+
+      <div class="atelier__preview">
+        <div class="atelier__previewlabel">Croissant</div>
+        <div class="atelier__modetag" id="modeTag">Customize</div>
+        <div class="atelier__counter">Edition <b id="editionCount">01</b> / 03</div>
+        <img class="atelier__img" id="atelierImg" src="assets/bag-hero.png" alt="Current configuration preview">
+      </div>
+
+      <div class="atelier__spec">
+        <div class="spec-row">
+          <div class="spec-row__k">Body</div>
+          <div class="spec-row__v" id="specBody">Black Woven Calf</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-row__k">Material</div>
+          <div class="spec-row__v" id="specMaterial">Calfskin Basket Weave</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-row__k">Hardware</div>
+          <div class="spec-row__v" id="specHardware">Brushed Silver <small>FF Clasp</small></div>
+        </div>
+      </div>
+
+      <nav class="atelier__tabs">
+        <button class="atelier__tab is-active" data-drawer="body">
+          <span class="atelier__tab__name">Body</span>
+          <span class="atelier__tab__val" id="tabBody">Black</span>
+        </button>
+        <button class="atelier__tab" data-drawer="material">
+          <span class="atelier__tab__name">Material</span>
+          <span class="atelier__tab__val" id="tabMaterial">Calfskin</span>
+        </button>
+        <button class="atelier__tab" data-drawer="hardware">
+          <span class="atelier__tab__name">Hardware</span>
+          <span class="atelier__tab__val" id="tabHardware">Silver</span>
+        </button>
+      </nav>
+
+      <div class="atelier__continue">
+        <button class="btn-hair btn-hair--solid" id="toReview">Continue to Review</button>
+      </div>
+    </div>
+
+    <!-- Drawer -->
+    <div class="scrim" id="scrim"></div>
+    <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <div class="drawer__handle" id="drawerHandle"></div>
+      <div class="drawer__head">
+        <h3 class="drawer__title" id="drawerTitle">Body</h3>
+        <div class="drawer__hint" id="drawerHint">Select one</div>
+      </div>
+      <div class="drawer__body" id="drawerBody"></div>
+      <div class="drawer__foot">
+        <button class="btn-hair btn-hair--solid" id="drawerConfirm">Confirm Selection</button>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SCREEN 3 · THE REVIEW (order sheet, before submitting)
+       ════════════════════════════════════════════════════════════ -->
+  <section class="screen" id="screen-review" aria-label="Review your design">
+    <div class="review">
+      <div class="navbar">
+        <button class="navbar__back" data-nav="atelier" aria-label="Back to atelier">
+          <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <div class="navbar__title">Review</div>
+        <div class="navbar__capsule" aria-hidden="true"><span></span><i></i><span></span></div>
+      </div>
+
+      <div class="review__head">
+        <h1>Your Design</h1>
+        <div class="rule"></div>
+        <p id="reviewEdition">Edition No. 01</p>
+      </div>
+
+      <div class="review__plate">
+        <img class="review__img" id="reviewImg" src="assets/bag-hero.png" alt="Your design preview">
+        <div class="review__stamp">Pending</div>
+      </div>
+
+      <div class="review__sheet">
+        <div class="spec-row">
+          <div class="spec-row__k">Body</div>
+          <div class="spec-row__v" id="rvBody">Black Woven</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-row__k">Material</div>
+          <div class="spec-row__v" id="rvMaterial">Calfskin Basket Weave</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-row__k">Hardware</div>
+          <div class="spec-row__v" id="rvHardware">Silver <small>Brushed FF Clasp</small></div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-row__k">Delivery</div>
+          <div class="spec-row__v" id="rvDelivery">8–10 weeks</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-row__k">Price</div>
+          <div class="spec-row__v" id="rvPrice">€ 4,800</div>
+        </div>
+      </div>
+
+      <div class="review__note">
+        Each piece is cut and assembled to order in the Roma atelier. A member of the
+        co-lab team will contact you to confirm the final details before production begins.
+      </div>
+
+      <div class="review__actions">
+        <button class="btn-hair btn-hair--solid" id="submitDesign">Submit to Co-Lab</button>
+        <button class="btn-hair" data-nav="atelier">Keep Editing</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SCREEN 4 · THE CONFIRMATION (submitted + share card)
+       ════════════════════════════════════════════════════════════ -->
+  <section class="screen" id="screen-confirm" aria-label="Design submitted">
+    <div class="confirm">
+      <div class="navbar">
+        <button class="navbar__back" data-nav="cover" aria-label="Back to cover">
+          <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <div class="navbar__title">Submitted</div>
+        <div class="navbar__capsule" aria-hidden="true"><span></span><i></i><span></span></div>
+      </div>
+
+      <div class="confirm__sealwrap">
+        <div class="confirm__seal">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 20l9-9"/>
+            <path d="M13.5 4.5c1.6-1.6 4.2-1.6 5.8 0s1.6 4.2 0 5.8L17 12.6l-4.2-4.2 2.1-2.1z"/>
+            <circle cx="6.5" cy="17.5" r="2.2"/>
+          </svg>
+        </div>
+        <h1>Design Received</h1>
+        <p class="confirm__sub">Your piece has entered the atelier queue.</p>
+      </div>
+
+      <div class="confirm__card" id="shareCard">
+        <div class="confirm__cardinner">
+          <div class="confirm__cardbrand">FENDI</div>
+          <div class="confirm__cardrule"></div>
+          <div class="confirm__cardsub">Croissant Co-Lab</div>
+          <img class="confirm__cardimg" id="confirmImg" src="assets/bag-hero.png" alt="Submitted design">
+          <div class="confirm__cardtitle" id="cfTitle">The Midnight Basket</div>
+          <div class="confirm__cardno" id="cfNo">Design No. 001</div>
+          <div class="confirm__cardspec" id="cfSpec">Black · Calfskin · Silver</div>
+          <div class="confirm__cardrule confirm__cardrule--b"></div>
+          <div class="confirm__cardfoot">Volume I — The Atelier Edition</div>
+        </div>
+      </div>
+
+      <div class="confirm__actions">
+        <button class="btn-hair btn-hair--solid" id="saveCard">Save Poster</button>
+        <button class="btn-hair" data-nav="gallery">Browse the Gallery</button>
+      </div>
+      <div class="confirm__hint" id="saveHint">Saved to your downloads</div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       SCREEN 3 · THE GALLERY
+       ════════════════════════════════════════════════════════════ -->
+  <section class="screen" id="screen-gallery" aria-label="Vote gallery">
+    <div class="gallery">
+      <div class="navbar">
+        <button class="navbar__back" data-nav="cover" aria-label="Back to cover">
+          <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <div class="navbar__title">The Gallery</div>
+        <div class="navbar__capsule" aria-hidden="true"><span></span><i></i><span></span></div>
+      </div>
+
+      <header class="gallery__head">
+        <h1>Vote Gallery</h1>
+        <div class="rule"></div>
+        <p>Community Edition</p>
+      </header>
+
+      <div class="gallery__stage" id="galleryStage"><!-- plates injected --></div>
+
+      <div class="gallery__foot">
+        <div class="gallery__dots" id="galleryDots"></div>
+        <button class="seal" id="sealBtn" aria-label="Cast vote">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 20l9-9"/>
+            <path d="M13.5 4.5c1.6-1.6 4.2-1.6 5.8 0s1.6 4.2 0 5.8L17 12.6l-4.2-4.2 2.1-2.1z"/>
+            <circle cx="6.5" cy="17.5" r="2.2"/>
+          </svg>
+        </button>
+        <div class="gallery__votetext">Tap to cast your <b>vote</b></div>
+      </div>
+
+      <div class="stamp-layer" id="stampLayer" aria-hidden="true">
+        <div class="stamp-flash" id="stampFlash"></div>
+        <div class="stamp" id="stamp"><span>Voted</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       WECHAT TAB BAR (persistent, on cover & gallery)
+       ════════════════════════════════════════════════════════════ -->
+  <nav class="tabbar" id="tabbar">
+    <button class="tabbar__item is-active" data-nav="cover">
+      <svg viewBox="0 0 24 24"><path d="M4 8h16v12H4z"/><path d="M8 8V6a4 4 0 018 0v2"/></svg>
+      Cover
+    </button>
+    <button class="tabbar__item" data-nav="atelier">
+      <svg viewBox="0 0 24 24"><path d="M5 6h14v14H5z"/><path d="M5 10h14"/><path d="M10 10v10"/></svg>
+      Atelier
+    </button>
+    <button class="tabbar__item" data-nav="gallery">
+      <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M4 15l5-5 4 4 3-3 4 4"/></svg>
+      Gallery
+    </button>
+  </nav>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

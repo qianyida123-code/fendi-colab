@@ -1,0 +1,200 @@
+/* ==========================================================================
+   FENDI — CROISSANT CO-LAB
+   Global Design System · Quiet Luxury / 高定工坊质感 / 杂志排版
+   ========================================================================== */
+
+/* ---------- 1. Design Tokens ---------- */
+:root {
+  /* Color */
+  --cream:      #F9F6F0;
+  --cream-deep: #F3EEE5;
+  --paper:      #FBFAF7;
+  --black:      #111111;
+  --ink:        #1C1C1C;
+  --grey:       #666666;
+  --grey-light: #9A9A9A;
+  --grey-hair:  #D9D4CA;
+  --gold:       #D4AF37;
+  --gold-muted: #B99A45;
+  --gold-hair:  rgba(212, 175, 55, .38);
+
+  /* Type */
+  --serif: "Playfair Display", "Times New Roman", "Songti SC", "Source Han Serif SC", serif;
+  --sans:  "Helvetica Neue", Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+
+  /* Structure */
+  --hairline: 1px solid var(--grey-hair);
+  --hairline-dark: 1px solid rgba(17, 17, 17, .14);
+
+  /* Elevation — paper-like, never "card-like" */
+  --shadow-paper:  0 1px 2px rgba(17,17,17,.03), 0 8px 24px -12px rgba(17,17,17,.10);
+  --shadow-lift:   0 2px 6px rgba(17,17,17,.05), 0 24px 48px -24px rgba(17,17,17,.22);
+  --shadow-drawer: 0 -1px 0 var(--grey-hair), 0 -24px 60px -30px rgba(17,17,17,.28);
+
+  /* Motion */
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --ease-soft: cubic-bezier(.4, 0, .2, 1);
+}
+
+/* ---------- 2. Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: #E6E1D8;
+  color: var(--black);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+img { display: block; max-width: 100%; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+::selection { background: var(--gold); color: #fff; }
+
+/* ---------- 3. Device Frame (WeChat Mini-Program shell) ---------- */
+.device {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 100vh;
+  height: 100dvh;
+  margin: 0 auto;
+  background: var(--cream);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 0 1px rgba(17,17,17,.06), 0 40px 90px -40px rgba(17,17,17,.45);
+}
+
+/* Paper grain — subtle, applied over the whole canvas */
+.grain {
+  position: absolute; inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: .5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.35'/%3E%3C/svg%3E");
+}
+
+/* ---------- 4. Shared atoms ---------- */
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 8.5px;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: var(--grey);
+  font-weight: 400;
+}
+.rule { height: 1px; background: var(--grey-hair); border: 0; margin: 0; }
+.rule--dark { background: rgba(17,17,17,.14); }
+.rule--gold { background: var(--gold-hair); }
+
+/* Hairline outline button — square / 2px chamfer, never rounded */
+.btn-hair {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 10px 12px;
+  border: 1px solid rgba(17,17,17,.28);
+  background: transparent;
+  color: var(--black);
+  font-family: var(--sans);
+  font-size: 9.5px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: border-color .5s var(--ease), color .5s var(--ease), background .5s var(--ease);
+  overflow: hidden;
+}
+.btn-hair::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+  background: var(--black);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .55s var(--ease);
+}
+.btn-hair:hover { border-color: rgba(17,17,17,.55); }
+.btn-hair:hover::after,
+.btn-hair:focus-visible::after { transform: scaleX(1); }
+.btn-hair:active { font-weight: 600; }
+.btn-hair.is-active { color: var(--gold-muted); border-color: var(--gold-hair); }
+.btn-hair.is-active::after { transform: scaleX(1); background: var(--gold); }
+
+.btn-hair--solid {
+  border-color: var(--black);
+  background: var(--black);
+  color: var(--cream);
+}
+.btn-hair--solid::after { background: var(--cream); }
+.btn-hair--solid:hover { background: #000; }
+
+:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+
+/* Fine scrollbars inside the phone */
+.scroll-area { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+.scroll-area::-webkit-scrollbar { width: 0; height: 0; }
+
+/* ---------- 5. Screens ---------- */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--cream);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(14px);
+  transition: opacity .6s var(--ease), transform .6s var(--ease), visibility .6s;
+  z-index: 1;
+}
+.screen.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  z-index: 5;
+}
+
+/* WeChat-style nav bar */
+.navbar {
+  flex: 0 0 auto;
+  height: 44px;
+  padding-top: env(safe-area-inset-top);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: var(--cream);
+  z-index: 20;
+}
+.navbar__title {
+  font-family: var(--serif);
+  font-size: 12px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-indent: .3em;
+}
+.navbar__back {
+  position: absolute; left: 14px; top: 0; bottom: 0;
+  display: flex; align-items: center;
+  width: 28px;
+}
+.navbar__back svg { width: 17px; height: 17px; stroke: var(--black); stroke-width: 1; fill: none; }
+.navbar__back:hover svg { stroke-width: 1.4; }
+.navbar__capsule {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  width: 74px; height: 22px;
+  border: 1px solid rgba(17,17,17,.16);
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: space-around;
+  background: rgba(251,250,247,.6);
+  backdrop-filter: blur(6px);
+}
+.navbar__capsule span { display: block; width: 13px; height: 13px; border-radius: 50%; background: var(--black); opacity: .78; }
+.navbar__capsule i { width: 1px; height: 12px; background: rgba(17,17,17,.2); }
